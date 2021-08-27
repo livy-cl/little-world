@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://scenes/game.gd" type="Script" id=2]
+[ext_resource path="res://shaders/TESTING-IMAGE.png" type="Texture" id=3]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=6]
+params_line_width = 0.1
+params_point_size = 0.1
+albedo_texture = ExtResource( 3 )
+metallic = 0.55
+roughness = 0.64
+uv1_scale = Vector3( 20, 20, 20 )
+
+[sub_resource type="PhysicsMaterial" id=2]
+
+[sub_resource type="BoxShape" id=3]
+
+[sub_resource type="CapsuleMesh" id=4]
+
+[sub_resource type="CapsuleShape" id=5]
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="terrain" type="MeshInstance" parent="."]
+transform = Transform( 15.0386, 0, 0, 0, 0.354022, 0, 0, 0, 15.4114, -0.034245, 0.0413041, -0.00340748 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 6 )
+
+[node name="StaticBody" type="StaticBody" parent="terrain"]
+physics_material_override = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="terrain/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Player" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.0006458, -1, 0, 1, -0.0006458, 0, 2.66197, 0 )
+script = ExtResource( 1 )
+
+[node name="player" type="MeshInstance" parent="Player"]
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+shape = SubResource( 5 )
+
+[node name="Rotation_Helper" type="Spatial" parent="Player"]
+
+[node name="Model" type="Spatial" parent="Player/Rotation_Helper"]
+
+[node name="Armature" type="Spatial" parent="Player/Rotation_Helper/Model"]
+
+[node name="Skeleton" type="Skeleton" parent="Player/Rotation_Helper/Model/Armature"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Player/Rotation_Helper/Model/Armature/Skeleton"]
+
+[node name="Animation_Player" type="AnimationPlayer" parent="Player/Rotation_Helper/Model/Armature"]
+
+[node name="Camera" type="Camera" parent="Player/Rotation_Helper"]
+transform = Transform( -1, -8.74228e-08, -4.37114e-08, 4.37114e-08, 1.91069e-15, -1, 8.74228e-08, -1, 1.91069e-15, 0, -0.000768638, -1.19021 )
+
+[node name="points" type="Node" parent="Player"]
+
+[node name="left_hand_point" type="Spatial" parent="Player/points"]
+transform = Transform( 1, 0, 0, 0, -0.0006458, -1, 0, 1, -0.0006458, 0, 2.66197, 0 )
+
+[node name="right_hand_point" type="Spatial" parent="Player/points"]
+transform = Transform( 1, 0, 0, 0, -0.0006458, -1, 0, 1, -0.0006458, 0, 2.66197, 0 )
+
+[node name="shield_point" type="Spatial" parent="Player/points"]
+transform = Transform( 1, 0, 0, 0, -0.0006458, -1, 0, 1, -0.0006458, 0, 2.66197, 0 )
+
+[node name="HUD" parent="Player" instance=ExtResource( 4 )]
+visible = false
