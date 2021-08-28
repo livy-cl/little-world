@@ -1,20 +1,20 @@
 extends KinematicBody
 
-const GRAVITY = -45
+export var free_fly = true
+export var MAX_FLY_SPEED = 18
+export var GRAVITY = -45
+export var MAX_SPEED = 20
+export var JUMP_SPEED = 18
+export var ACCEL = 4.5
+export var DEACCEL= 16
+export var MAX_SLOPE_ANGLE = 40
+export var MOUSE_SENSITIVITY = 0.05
+
 var vel = Vector3()
-const MAX_SPEED = 20
-const JUMP_SPEED = 18
-const ACCEL = 4.5
-
 var dir = Vector3()
-
-const DEACCEL= 16
-const MAX_SLOPE_ANGLE = 40
 
 var camera
 var rotation_helper
-
-var MOUSE_SENSITIVITY = 0.05
 
 func _ready():
 	camera = $Rotation_Helper/Camera
@@ -53,9 +53,22 @@ func process_input(delta):
 
 	# ----------------------------------
 	# Jumping
-	if is_on_floor():
+	if is_on_floor() and free_fly == false:
 		if Input.is_action_just_pressed("jump"):
 			vel.y = JUMP_SPEED
+	# ----------------------------------
+	
+	# ----------------------------------
+	# fly
+	if Input.is_action_just_pressed("debug"):
+		free_fly = !free_fly
+	
+	if free_fly == true:
+		vel.y = 0
+		if Input.is_action_pressed("jump"):
+			vel.y = MAX_FLY_SPEED
+		if Input.is_action_pressed("crouch"):
+			vel.y = -MAX_FLY_SPEED
 	# ----------------------------------
 
 	# ----------------------------------
@@ -73,7 +86,8 @@ func process_movement(delta):
 	dir.y = 0
 	dir = dir.normalized()
 
-	vel.y += delta * GRAVITY
+	if free_fly == false:
+		vel.y += delta * GRAVITY
 
 	var hvel = vel
 	hvel.y = 0

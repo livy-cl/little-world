@@ -12,75 +12,57 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -175.0
-margin_top = -227.0
-margin_right = 175.0
-margin_bottom = 227.0
+anchor_left = 0.329102
+anchor_top = 0.121667
+anchor_right = 0.670898
+anchor_bottom = 0.878333
 color = Color( 0, 0, 0, 0.27451 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Play" type="Button" parent="ColorRect"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -98.0
-margin_top = 29.0
-margin_right = 98.0
-margin_bottom = 80.0
+anchor_left = 0.22
+anchor_top = 0.0638767
+anchor_right = 0.78
+anchor_bottom = 0.176211
 text = "Play"
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="options" type="Button" parent="ColorRect"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -98.0
-margin_top = -87.5
-margin_right = 98.0
-margin_bottom = -36.5
+anchor_left = 0.22
+anchor_top = 0.307269
+anchor_right = 0.78
+anchor_bottom = 0.419604
 text = "Options"
 script = ExtResource( 3 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 scene = "res://scenes/options.tscn"
 
 [node name="quit_to_main_menu" type="Button" parent="ColorRect"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -98.0
-margin_top = 42.5
-margin_right = 98.0
-margin_bottom = 93.5
+anchor_left = 0.22
+anchor_top = 0.593612
+anchor_right = 0.78
+anchor_bottom = 0.705947
 text = "Quit to main menu"
 script = ExtResource( 3 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 scene = "res://scenes/mainMenu.tscn"
 
 [node name="quit_to_desktop" type="Button" parent="ColorRect"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -98.0
-margin_top = -73.0
-margin_right = 98.0
-margin_bottom = -22.0
+anchor_left = 0.22
+anchor_top = 0.839207
+anchor_right = 0.78
+anchor_bottom = 0.951542
 text = "Quit to desktop"
 script = ExtResource( 2 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
