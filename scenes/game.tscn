@@ -1,65 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://scenes/game.gd" type="Script" id=2]
-[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=4]
-
-[sub_resource type="CapsuleMesh" id=5]
-
-[sub_resource type="CapsuleShape" id=6]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/game.gd" type="Script" id=2]
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 2 )
 
-[node name="terrain" type="MeshInstance" parent="."]
-
-[node name="StaticBody" type="StaticBody" parent="terrain"]
-
-[node name="collision" type="CollisionShape" parent="terrain/StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8839, 0 )
-
-[node name="water" type="MeshInstance" parent="."]
-
-[node name="Player" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, -0.0006458, -1, 0, 1, -0.0006458, 22.3196, 6.221, 21.0413 )
-script = ExtResource( 1 )
-free_fly = false
-MAX_FLY_SPEED = 170
-DEACCEL = 25
-
-[node name="player" type="MeshInstance" parent="Player"]
-mesh = SubResource( 5 )
-material/0 = null
-
-[node name="CollisionShape" type="CollisionShape" parent="Player"]
-shape = SubResource( 6 )
-
-[node name="Rotation_Helper" type="Spatial" parent="Player"]
-
-[node name="Model" type="Spatial" parent="Player/Rotation_Helper"]
-
-[node name="Armature" type="Spatial" parent="Player/Rotation_Helper/Model"]
-
-[node name="Skeleton" type="Skeleton" parent="Player/Rotation_Helper/Model/Armature"]
-
-[node name="MeshInstance" type="MeshInstance" parent="Player/Rotation_Helper/Model/Armature/Skeleton"]
-
-[node name="Animation_Player" type="AnimationPlayer" parent="Player/Rotation_Helper/Model/Armature"]
-
-[node name="Camera" type="Camera" parent="Player/Rotation_Helper"]
-transform = Transform( -1, -8.74228e-08, -4.37114e-08, 4.37114e-08, 1.91069e-15, -1, 8.74228e-08, -1, 1.91069e-15, 0, -0.000768638, -1.19021 )
-far = 8192.0
-
-[node name="points" type="Node" parent="Player"]
-
-[node name="left_hand_point" type="Spatial" parent="Player/points"]
-transform = Transform( 1, 0, 0, 0, -0.0006458, -1, 0, 1, -0.0006458, 0, 2.66197, 0 )
-
-[node name="right_hand_point" type="Spatial" parent="Player/points"]
-transform = Transform( 1, 0, 0, 0, -0.0006458, -1, 0, 1, -0.0006458, 0, 2.66197, 0 )
-
-[node name="shield_point" type="Spatial" parent="Player/points"]
-transform = Transform( 1, 0, 0, 0, -0.0006458, -1, 0, 1, -0.0006458, 0, 2.66197, 0 )
-
-[node name="HUD" parent="Player" instance=ExtResource( 4 )]
-visible = false
+[node name="Player" parent="." instance=ExtResource( 1 )]

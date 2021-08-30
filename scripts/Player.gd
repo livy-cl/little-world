@@ -1,22 +1,41 @@
 extends KinematicBody
 
+# Flying
 export var free_fly = true
-export var MAX_FLY_SPEED = 18
-export var GRAVITY = -45
-export var MAX_SPEED = 20
-export var JUMP_SPEED = 18
-export var ACCEL = 4.5
-export var DEACCEL= 16
-export var MAX_SLOPE_ANGLE = 40
-export var MOUSE_SENSITIVITY = 0.05
+export var max_fly_speed = 200
+export var max_vertical_fly_speed = 70
+
+# Vertical Forces
+export var gravity = -45
+export var water_up_force = 35
+
+# Jumping
+export var jump_speed = 18
+
+# Walking
+export var max_speed = 20
+export var max_sprint_speed = 30
+export var accel = 4.5
+export var deaccel= 16
+export var max_slope_angle = 40
+
+# Mouse
+export var mouse_sensivity = 0.05
+
+# Stamina
+export var max_stamina = 100
+
 
 var vel = Vector3()
 var dir = Vector3()
 
 var camera
 var rotation_helper
+var is_sprinting = false
+var stamina
 
 func _ready():
+	stamina = max_stamina
 	camera = $Rotation_Helper/Camera
 	rotation_helper = $Rotation_Helper
 
@@ -43,6 +62,10 @@ func process_input(delta):
 		input_movement_vector.x -= 1
 	if Input.is_action_pressed("move_right"):
 		input_movement_vector.x += 1
+	if Input.is_action_pressed("sprint"):
+		is_sprinting = true
+	else:
+		is_sprinting = false
 
 	input_movement_vector = input_movement_vector.normalized()
 
@@ -55,7 +78,7 @@ func process_input(delta):
 	# Jumping
 	if is_on_floor() and free_fly == false:
 		if Input.is_action_just_pressed("jump"):
-			vel.y = JUMP_SPEED
+			vel.y = jump_speed
 	# ----------------------------------
 	
 	# ----------------------------------
@@ -66,9 +89,9 @@ func process_input(delta):
 	if free_fly == true:
 		vel.y = 0
 		if Input.is_action_pressed("jump"):
-			vel.y = MAX_FLY_SPEED
+			vel.y = max_vertical_fly_speed
 		if Input.is_action_pressed("crouch"):
-			vel.y = -MAX_FLY_SPEED
+			vel.y = water_up_force
 	# ----------------------------------
 
 	# ----------------------------------
@@ -86,30 +109,37 @@ func process_movement(delta):
 	dir.y = 0
 	dir = dir.normalized()
 
-	if free_fly == false:
-		vel.y += delta * GRAVITY
+	if free_fly == false and self.translation.y > 1:
+		vel.y += delta * gravity
+	elif self.translation.y < 1:
+		vel.y += delta * water_up_force
 
 	var hvel = vel
 	hvel.y = 0
 
 	var target = dir
-	target *= MAX_SPEED
-
-	var accel
-	if dir.dot(hvel) > 0:
-		accel = ACCEL
+	if free_fly == false and is_sprinting == false:
+		target *= max_speed
+	elif is_sprinting == true:
+		target *= max_sprint_speed
 	else:
-		accel = DEACCEL
+		target *= max_fly_speed
 
-	hvel = hvel.linear_interpolate(target, accel * delta)
+	var current_accel
+	if dir.dot(hvel) > 0:
+		current_accel = accel
+	else:
+		current_accel = deaccel
+
+	hvel = hvel.linear_interpolate(target, current_accel * delta)
 	vel.x = hvel.x
 	vel.z = hvel.z
-	vel = move_and_slide(vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
+	vel = move_and_slide(vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(max_slope_angle))
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY))
-		self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+		rotation_helper.rotate_x(deg2rad(event.relative.y * mouse_sensivity))
+		self.rotate_y(deg2rad(event.relative.x * mouse_sensivity * -1))
 
 		var camera_rot = rotation_helper.rotation_degrees
 		camera_rot.x = clamp(camera_rot.x, -70, 70)

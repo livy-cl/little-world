@@ -1,0 +1,6 @@
+Godot Engine v3.3.3.stable.arch_linux - https://godotengine.org
+OpenGL ES 3.0 Renderer: Radeon RX 580 Series (POLARIS10, DRM 3.41.0, 5.13.9-zen1-1-zen, LLVM 12.0.1)
+OpenGL ES Batching: ON
+ 
+**ERROR**: Can't load the script "game.gd" as it doesn't inherit from SceneTree or MainLoop.
+   At: main/main.cpp:1675:start() - Method failed. Returning: false
