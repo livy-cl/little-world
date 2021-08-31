@@ -1,7 +1,7 @@
 extends KinematicBody
 
 # Flying
-export var free_fly = true
+export var free_fly = false
 export var max_fly_speed = 200
 export var max_vertical_fly_speed = 70
 
@@ -74,6 +74,13 @@ func process_input(delta):
 	if is_on_floor() and free_fly == false:
 		if Input.is_action_just_pressed("jump"):
 			vel.y = jump_speed
+	# ----------------------------------
+	
+	# ----------------------------------
+	# inventory
+	
+	if Input.is_action_just_pressed("inventory"):
+		$HUD/inventory.visible = !$HUD/inventory.visible
 	# ----------------------------------
 	
 	# ----------------------------------

@@ -34,6 +34,7 @@ func generate_leafs():
 	
 	add_child(mesh_instance)
 
+
 func _ready():
 	generate_trunk()
 	generate_leafs()

@@ -1,0 +1,14 @@
+- name: null
+  type: null
+  sort: null
+  icon: null
+
+- name: axe
+  type: tools
+  sort: 3
+  icon: res://material/textures/tools/axe.png
+
+- name: pickaxe
+  type: tools
+  sort: 2
+  icon: res://material/textures/tools/pickaxe.png

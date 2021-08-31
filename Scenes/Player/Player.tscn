@@ -1,18 +1,20 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/PauseMenu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Player/HUD.gd" type="Script" id=3]
-[ext_resource path="res://Models/heart.mesh" type="ArrayMesh" id=4]
+[ext_resource path="res://Scripts/HUD.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleMesh" id=1]
+radius = 0.7
+mid_height = 1.569
 
 [sub_resource type="CapsuleShape" id=2]
+radius = 0.709693
+height = 1.55619
 
 [node name="Player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, -0.0006458, -1, 0, 1, -0.0006458, 0, 0, 0 )
 script = ExtResource( 1 )
-free_fly = false
 
 [node name="player" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
@@ -58,16 +60,589 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
-heart_mesh = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="HotBar" type="Control" parent="HUD"]
+[node name="inventory" type="Control" parent="HUD"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="HUD/inventory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 138.0
+margin_top = 79.0
+margin_right = -147.0
+margin_bottom = -92.0
+color = Color( 0, 0, 0, 0.294118 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slots" type="Control" parent="HUD/inventory"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="toolbox1" type="ColorRect" parent="HUD/HotBar"]
+[node name="toolbox1" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.15918
+anchor_top = 0.666667
+anchor_right = 0.213233
+anchor_bottom = 0.756268
+margin_right = -9.22501
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox1"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox2" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.227539
+anchor_top = 0.666667
+anchor_right = 0.281593
+anchor_bottom = 0.756268
+margin_right = -9.22519
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox2"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox3" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.295898
+anchor_top = 0.666667
+anchor_right = 0.349952
+anchor_bottom = 0.756268
+margin_right = -9.22519
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox3"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox4" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.364258
+anchor_top = 0.666667
+anchor_right = 0.418312
+anchor_bottom = 0.756268
+margin_right = -9.22519
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox4"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox5" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.432617
+anchor_top = 0.666667
+anchor_right = 0.486671
+anchor_bottom = 0.756268
+margin_right = -9.22519
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox5"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox6" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.500977
+anchor_top = 0.666667
+anchor_right = 0.55503
+anchor_bottom = 0.756268
+margin_right = -9.22498
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox6"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox7" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.569336
+anchor_top = 0.666667
+anchor_right = 0.62339
+anchor_bottom = 0.756268
+margin_right = -9.22522
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox7"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox8" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.15918
+anchor_top = 0.5
+anchor_right = 0.213233
+anchor_bottom = 0.589601
+margin_right = -9.22501
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox8"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox9" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.227539
+anchor_top = 0.5
+anchor_right = 0.281593
+anchor_bottom = 0.589601
+margin_right = -9.22519
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox9"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox10" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.295898
+anchor_top = 0.5
+anchor_right = 0.349952
+anchor_bottom = 0.589601
+margin_right = -9.22519
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox10"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox11" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.364258
+anchor_top = 0.5
+anchor_right = 0.418312
+anchor_bottom = 0.589601
+margin_right = -9.22519
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox11"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox12" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.432617
+anchor_top = 0.5
+anchor_right = 0.486671
+anchor_bottom = 0.589601
+margin_right = -9.22519
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox12"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox13" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.500977
+anchor_top = 0.5
+anchor_right = 0.55503
+anchor_bottom = 0.589601
+margin_right = -9.22498
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox13"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox14" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.569336
+anchor_top = 0.5
+anchor_right = 0.62339
+anchor_bottom = 0.589601
+margin_right = -9.22522
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox14"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox15" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.15918
+anchor_top = 0.333333
+anchor_right = 0.213233
+anchor_bottom = 0.422934
+margin_right = -9.22501
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox15"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox16" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.227539
+anchor_top = 0.333333
+anchor_right = 0.281593
+anchor_bottom = 0.422934
+margin_right = -9.22519
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox16"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox17" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.295898
+anchor_top = 0.333333
+anchor_right = 0.349952
+anchor_bottom = 0.422934
+margin_right = -9.22519
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox17"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox18" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.364258
+anchor_top = 0.333333
+anchor_right = 0.418312
+anchor_bottom = 0.422934
+margin_right = -9.22519
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox18"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox19" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.432617
+anchor_top = 0.333333
+anchor_right = 0.486671
+anchor_bottom = 0.422934
+margin_right = -9.22519
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox19"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox20" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.500977
+anchor_top = 0.333333
+anchor_right = 0.55503
+anchor_bottom = 0.422934
+margin_right = -9.22498
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox20"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox21" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.569336
+anchor_top = 0.333333
+anchor_right = 0.62339
+anchor_bottom = 0.422934
+margin_right = -9.22522
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox21"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox22" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.15918
+anchor_top = 0.166667
+anchor_right = 0.213233
+anchor_bottom = 0.256268
+margin_right = -9.22501
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox22"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox23" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.227539
+anchor_top = 0.166667
+anchor_right = 0.281593
+anchor_bottom = 0.256268
+margin_right = -9.22519
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox23"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox24" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.295898
+anchor_top = 0.166667
+anchor_right = 0.349952
+anchor_bottom = 0.256268
+margin_right = -9.22519
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox24"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox25" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.364258
+anchor_top = 0.166667
+anchor_right = 0.418312
+anchor_bottom = 0.256268
+margin_right = -9.22519
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox25"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox26" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.432617
+anchor_top = 0.166667
+anchor_right = 0.486671
+anchor_bottom = 0.256268
+margin_right = -9.22519
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox26"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox27" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.500977
+anchor_top = 0.166667
+anchor_right = 0.55503
+anchor_bottom = 0.256268
+margin_right = -9.22498
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox27"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox28" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.569336
+anchor_top = 0.166667
+anchor_right = 0.62339
+anchor_bottom = 0.256268
+margin_right = -9.22522
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox28"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox29" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.657227
+anchor_top = 0.733333
+anchor_right = 0.71128
+anchor_bottom = 0.822934
+margin_right = -9.22522
+margin_bottom = -8.96008
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox29"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox30" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.657227
+anchor_top = 0.566667
+anchor_right = 0.71128
+anchor_bottom = 0.656268
+margin_right = -9.22522
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox30"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox31" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.657227
+anchor_top = 0.4
+anchor_right = 0.71128
+anchor_bottom = 0.489601
+margin_right = -9.22522
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox31"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox32" type="ColorRect" parent="HUD/inventory/Slots"]
+anchor_left = 0.657227
+anchor_top = 0.233333
+anchor_right = 0.71128
+anchor_bottom = 0.322934
+margin_right = -9.22522
+margin_bottom = -8.96011
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Item" type="Sprite" parent="HUD/inventory/Slots/toolbox32"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="hotbar" type="Control" parent="HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="toolbox1" type="ColorRect" parent="HUD/hotbar"]
 anchor_left = 0.15918
 anchor_top = 0.9
 anchor_right = 0.206055
@@ -80,7 +655,11 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="toolbox2" type="ColorRect" parent="HUD/HotBar"]
+[node name="Item" type="Sprite" parent="HUD/hotbar/toolbox1"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox2" type="ColorRect" parent="HUD/hotbar"]
 anchor_left = 0.227539
 anchor_top = 0.9
 anchor_right = 0.274415
@@ -93,7 +672,11 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="toolbox3" type="ColorRect" parent="HUD/HotBar"]
+[node name="Item" type="Sprite" parent="HUD/hotbar/toolbox2"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox3" type="ColorRect" parent="HUD/hotbar"]
 anchor_left = 0.295898
 anchor_top = 0.9
 anchor_right = 0.342774
@@ -106,7 +689,11 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="toolbox4" type="ColorRect" parent="HUD/HotBar"]
+[node name="Item" type="Sprite" parent="HUD/hotbar/toolbox3"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox4" type="ColorRect" parent="HUD/hotbar"]
 anchor_left = 0.364258
 anchor_top = 0.9
 anchor_right = 0.411134
@@ -119,7 +706,11 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="toolbox5" type="ColorRect" parent="HUD/HotBar"]
+[node name="Item" type="Sprite" parent="HUD/hotbar/toolbox4"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox5" type="ColorRect" parent="HUD/hotbar"]
 anchor_left = 0.432617
 anchor_top = 0.9
 anchor_right = 0.479493
@@ -132,7 +723,11 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="toolbox6" type="ColorRect" parent="HUD/HotBar"]
+[node name="Item" type="Sprite" parent="HUD/hotbar/toolbox5"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox6" type="ColorRect" parent="HUD/hotbar"]
 anchor_left = 0.500977
 anchor_top = 0.9
 anchor_right = 0.547852
@@ -145,7 +740,11 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="toolbox7" type="ColorRect" parent="HUD/HotBar"]
+[node name="Item" type="Sprite" parent="HUD/hotbar/toolbox6"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox7" type="ColorRect" parent="HUD/hotbar"]
 anchor_left = 0.569336
 anchor_top = 0.9
 anchor_right = 0.616212
@@ -158,7 +757,11 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="toolbox8" type="ColorRect" parent="HUD/HotBar"]
+[node name="Item" type="Sprite" parent="HUD/hotbar/toolbox7"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox8" type="ColorRect" parent="HUD/hotbar"]
 anchor_left = 0.637695
 anchor_top = 0.9
 anchor_right = 0.684571
@@ -171,7 +774,11 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="toolbox9" type="ColorRect" parent="HUD/HotBar"]
+[node name="Item" type="Sprite" parent="HUD/hotbar/toolbox8"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox9" type="ColorRect" parent="HUD/hotbar"]
 anchor_left = 0.706055
 anchor_top = 0.9
 anchor_right = 0.75293
@@ -184,7 +791,11 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="toolbox10" type="ColorRect" parent="HUD/HotBar"]
+[node name="Item" type="Sprite" parent="HUD/hotbar/toolbox9"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )
+
+[node name="toolbox10" type="ColorRect" parent="HUD/hotbar"]
 anchor_left = 0.774414
 anchor_top = 0.9
 anchor_right = 0.82129
@@ -196,3 +807,7 @@ color = Color( 0, 0, 0, 0.329412 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="Item" type="Sprite" parent="HUD/hotbar/toolbox10"]
+position = Vector2( 20.2341, 20.0589 )
+scale = Vector2( 0.399109, 0.399109 )

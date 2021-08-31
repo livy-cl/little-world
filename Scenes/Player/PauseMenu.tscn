@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/UI/HUD/Play_button.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/UI/pause_menu/Play_button.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/UI/quit_to_desktop.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/UI/change_scene.gd" type="Script" id=3]
+
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
