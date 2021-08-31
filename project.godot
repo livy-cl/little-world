@@ -12,22 +12,28 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "Chunk",
 "language": "GDScript",
-"path": "res://scripts/Chunk.gd"
+"path": "res://Scripts/Chunk.gd"
 }, {
 "base": "Spatial",
 "class": "CustomTree",
 "language": "GDScript",
-"path": "res://scenes/Tree.gd"
+"path": "res://Scripts/Tree.gd"
+}, {
+"base": "Node",
+"class": "HUD",
+"language": "GDScript",
+"path": "res://Scenes/Player/HUD.gd"
 } ]
 _global_script_class_icons={
 "Chunk": "",
-"CustomTree": ""
+"CustomTree": "",
+"HUD": ""
 }
 
 [application]
 
 config/name="Little world"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://Scenes/Game/Game.tscn"
 config/icon="res://icon.png"
 
 [global]

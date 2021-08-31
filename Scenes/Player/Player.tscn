@@ -1,0 +1,198 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Player/PauseMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Player/HUD.gd" type="Script" id=3]
+[ext_resource path="res://Models/heart.mesh" type="ArrayMesh" id=4]
+
+[sub_resource type="CapsuleMesh" id=1]
+
+[sub_resource type="CapsuleShape" id=2]
+
+[node name="Player" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, -0.0006458, -1, 0, 1, -0.0006458, 0, 0, 0 )
+script = ExtResource( 1 )
+free_fly = false
+
+[node name="player" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 2 )
+
+[node name="Rotation_Helper" type="Spatial" parent="."]
+
+[node name="Model" type="Spatial" parent="Rotation_Helper"]
+
+[node name="Armature" type="Spatial" parent="Rotation_Helper/Model"]
+
+[node name="Skeleton" type="Skeleton" parent="Rotation_Helper/Model/Armature"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Rotation_Helper/Model/Armature/Skeleton"]
+
+[node name="Animation_Player" type="AnimationPlayer" parent="Rotation_Helper/Model/Armature"]
+
+[node name="Camera" type="Camera" parent="Rotation_Helper"]
+transform = Transform( -1, -8.74228e-08, -4.37114e-08, 4.37114e-08, 0, -1, 8.74228e-08, -1, 0, 0, -0.000768638, -1.19021 )
+far = 8192.0
+
+[node name="hearts" type="Spatial" parent="Rotation_Helper/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9, 6.4, -10.25 )
+
+[node name="points" type="Node" parent="."]
+
+[node name="left_hand_point" type="Spatial" parent="points"]
+transform = Transform( 1, 0, 0, 0, -0.0006458, -1, 0, 1, -0.0006458, 0, 2.66197, 0 )
+
+[node name="right_hand_point" type="Spatial" parent="points"]
+transform = Transform( 1, 0, 0, 0, -0.0006458, -1, 0, 1, -0.0006458, 0, 2.66197, 0 )
+
+[node name="shield_point" type="Spatial" parent="points"]
+transform = Transform( 1, 0, 0, 0, -0.0006458, -1, 0, 1, -0.0006458, 0, 2.66197, 0 )
+
+[node name="pause_menu" parent="." instance=ExtResource( 2 )]
+visible = false
+
+[node name="HUD" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+heart_mesh = ExtResource( 4 )
+
+[node name="HotBar" type="Control" parent="HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="toolbox1" type="ColorRect" parent="HUD/HotBar"]
+anchor_left = 0.15918
+anchor_top = 0.9
+anchor_right = 0.206055
+anchor_bottom = 0.980001
+margin_right = -8.00012
+margin_bottom = -8.00012
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="toolbox2" type="ColorRect" parent="HUD/HotBar"]
+anchor_left = 0.227539
+anchor_top = 0.9
+anchor_right = 0.274415
+anchor_bottom = 0.980001
+margin_right = -8.00018
+margin_bottom = -8.00012
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="toolbox3" type="ColorRect" parent="HUD/HotBar"]
+anchor_left = 0.295898
+anchor_top = 0.9
+anchor_right = 0.342774
+anchor_bottom = 0.980001
+margin_right = -8.00012
+margin_bottom = -8.00012
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="toolbox4" type="ColorRect" parent="HUD/HotBar"]
+anchor_left = 0.364258
+anchor_top = 0.9
+anchor_right = 0.411134
+anchor_bottom = 0.980001
+margin_right = -8.00012
+margin_bottom = -8.00012
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="toolbox5" type="ColorRect" parent="HUD/HotBar"]
+anchor_left = 0.432617
+anchor_top = 0.9
+anchor_right = 0.479493
+anchor_bottom = 0.980001
+margin_right = -8.00012
+margin_bottom = -8.00012
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="toolbox6" type="ColorRect" parent="HUD/HotBar"]
+anchor_left = 0.500977
+anchor_top = 0.9
+anchor_right = 0.547852
+anchor_bottom = 0.980001
+margin_right = -8.00012
+margin_bottom = -8.00012
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="toolbox7" type="ColorRect" parent="HUD/HotBar"]
+anchor_left = 0.569336
+anchor_top = 0.9
+anchor_right = 0.616212
+anchor_bottom = 0.980001
+margin_right = -8.00012
+margin_bottom = -8.00012
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="toolbox8" type="ColorRect" parent="HUD/HotBar"]
+anchor_left = 0.637695
+anchor_top = 0.9
+anchor_right = 0.684571
+anchor_bottom = 0.980001
+margin_right = -8.00012
+margin_bottom = -8.00012
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="toolbox9" type="ColorRect" parent="HUD/HotBar"]
+anchor_left = 0.706055
+anchor_top = 0.9
+anchor_right = 0.75293
+anchor_bottom = 0.980001
+margin_right = -8.00012
+margin_bottom = -8.00012
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="toolbox10" type="ColorRect" parent="HUD/HotBar"]
+anchor_left = 0.774414
+anchor_top = 0.9
+anchor_right = 0.82129
+anchor_bottom = 0.980001
+margin_right = -8.00012
+margin_bottom = -8.00012
+rect_scale = Vector2( 1.2, 1.2 )
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": true
+}

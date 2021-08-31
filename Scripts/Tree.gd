@@ -14,6 +14,7 @@ func generate_trunk():
 	var mesh_instance = MeshInstance.new()
 	mesh_instance.mesh = trunk_mesh
 	mesh_instance.translation = Vector3(0, 4, 0)
+	mesh_instance.create_trimesh_collision()
 	
 	add_child(mesh_instance)
 
@@ -29,6 +30,7 @@ func generate_leafs():
 	var mesh_instance = MeshInstance.new()
 	mesh_instance.mesh = leaf_mesh
 	mesh_instance.translation = Vector3(0, 10, 0)
+	mesh_instance.create_trimesh_collision()
 	
 	add_child(mesh_instance)
 

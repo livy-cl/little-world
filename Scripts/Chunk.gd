@@ -16,8 +16,6 @@ var should_remove = true
 var thread
 
 func _init(noise, x, z, chunk_size):
-	print("Chunk: ", x, ", ", z)
-	
 	self.noise = noise
 	self.x = x
 	self.z = z
@@ -34,8 +32,8 @@ func _ready():
 func generate_chunk():
 	var plane_mesh = PlaneMesh.new()
 	plane_mesh.size = Vector2(chunk_size, chunk_size)
-	plane_mesh.subdivide_depth = chunk_size * 2
-	plane_mesh.subdivide_width = chunk_size * 2
+	plane_mesh.subdivide_depth = chunk_size * 0.5
+	plane_mesh.subdivide_width = chunk_size * 0.5
 	plane_mesh.material = preload(terrain_material)
 	
 	var surface_tool = SurfaceTool.new()

@@ -61,14 +61,24 @@ func update_chunks():
 		int(palyer_translation.z) / chunk_size
 	)
 	
-	for x in range(player_chunk_loc.x - chunks_amount * 0.5, player_chunk_loc.x + chunks_amount + 0.5):
-		for z in range(player_chunk_loc.z - chunks_amount * 0.5, player_chunk_loc.z + chunks_amount + 0.5):
-			add_chunk(x, z)
+	loop_chunks(player_chunk_loc, 2)
+	loop_chunks(player_chunk_loc, chunks_amount * 0.2)
+	loop_chunks(player_chunk_loc, 2)
+	loop_chunks(player_chunk_loc, chunks_amount * 0.5)
+
+
+func loop_chunks(player_chunk_loc, radius):
+	for x in range(player_chunk_loc.x - radius, player_chunk_loc.x + radius):
+		for z in range(player_chunk_loc.z - radius, player_chunk_loc.z + radius):
+			check_chunk(x, z)
+
+
+func check_chunk(x, z):
+	add_chunk(x, z)
 			
-			var chunk = get_chunk(x, z)
-			if chunk != null:
-				chunk.should_remove = false
-	
+	var chunk = get_chunk(x, z)
+	if chunk != null:
+		chunk.should_remove = false
 
 
 func clean_up_chunks():

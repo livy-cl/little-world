@@ -22,9 +22,6 @@ export var max_slope_angle = 40
 # Mouse
 export var mouse_sensivity = 0.05
 
-# Stamina
-export var max_stamina = 100
-
 
 var vel = Vector3()
 var dir = Vector3()
@@ -32,10 +29,8 @@ var dir = Vector3()
 var camera
 var rotation_helper
 var is_sprinting = false
-var stamina
 
 func _ready():
-	stamina = max_stamina
 	camera = $Rotation_Helper/Camera
 	rotation_helper = $Rotation_Helper
 
@@ -98,10 +93,14 @@ func process_input(delta):
 	# Capturing/Freeing the cursor
 	if Input.is_action_just_pressed("ui_cancel"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-			$HUD.hide()
+			$pause_menu.hide()
+			$HUD.show()
+			$Rotation_Helper/Camera/hearts.show()
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		else:
-			$HUD.show()
+			$pause_menu.show()
+			$HUD.hide()
+			$Rotation_Helper/Camera/hearts.hide()
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	# ----------------------------------
 
