@@ -81,6 +81,10 @@ func process_input(delta):
 	
 	if Input.is_action_just_pressed("inventory"):
 		$HUD/inventory.visible = !$HUD/inventory.visible
+		if $HUD/inventory.visible == true:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# ----------------------------------
 	
 	# ----------------------------------
@@ -107,6 +111,7 @@ func process_input(delta):
 		else:
 			$pause_menu.show()
 			$HUD.hide()
+			$HUD/inventory.visible = false
 			$Rotation_Helper/Camera/hearts.hide()
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	# ----------------------------------

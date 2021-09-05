@@ -9,9 +9,12 @@ export(String) var hearts_pool = "../Rotation_Helper/Camera/hearts"
 var health
 var hearts_node
 
-var inventory_space = 41
+var inventory_space = 42
 var inventory = []
 var library
+var selected_item = 1
+var slot_default_color = Color(0, 0, 0, 84)
+var slot_selected_color = Color(0, 0, 0, 100)
 
 
 func _switch_items(array, first_place, second_place):
@@ -148,15 +151,33 @@ func update_inventory():
 func update_hotbar():
 	var texture
 	
-	for index in range(0, 9):
+	for index in range(0, 10):
 		if library[inventory[index]]["icon"] != null:
-			get_node("hotbar/toolbox" + str(index+1) + "/Item").texture = load(library[inventory[index]]["icon"])
+			get_item_node(index).texture = load(library[inventory[index]]["icon"])
 
 
 func update_main_inventory():
-	for index in range(10, 41):
+	for index in range(10, 42):
 		if library[inventory[index]]["icon"] != null:
-			print(index)
+			get_item_node(index).texture = load(library[inventory[index]]["icon"])
+
+
+func get_item_node(number):
+	if number < 10:
+		return get_node("hotbar/toolbox" + str(number) + "/Item")
+	else:
+		return get_node("inventory/Slots/toolbox" + str(number) + "/Item")
+
+
+func get_toolbox_node(number):
+	if number < 10:
+		return get_node("hotbar/toolbox" + str(number))
+	else:
+		return get_node("inventory/Slots/toolbox" + str(number))
+
+
+func update_selected_item():
+	get_toolbox_node(selected_item+1)
 
 
 func _ready():
@@ -167,9 +188,10 @@ func _ready():
 	library = yaml.parse(_read_file("res://config/ItemLibrary.yaml"))
 	init_inventory()
 	
-	add_id_item(1)
-	add_id_item(1)
-	add_id_item(1)
+	for x in range(0,10):
+		add_id_item(1)
+	for x in range(0,20):
+		add_id_item(2)
 
 
 func _process(delta):
