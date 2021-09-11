@@ -4,6 +4,8 @@ class_name Chunk
 export(int) var water_amount = 15  # higher number means less water
 export(int) var tree_amount = 1.5  # higher number means more trees
 
+export(float) var water_detail = 3
+
 const water_material = "res://material/water.material"
 const terrain_material = "res://material/terrain.material"
 
@@ -41,7 +43,7 @@ func generate_chunk():
 	
 	var data_tool = MeshDataTool.new()
 	var array_plane = surface_tool.commit()
-	var error = data_tool.create_from_surface(array_plane, 0)
+	var _error = data_tool.create_from_surface(array_plane, 0)
 	
 	for index in range(data_tool.get_vertex_count()):
 		# set vertex height
@@ -66,6 +68,7 @@ func generate_chunk():
 	surface_tool.generate_normals()
 	
 	mesh_instance = MeshInstance.new()
+	mesh_instance.name = "terrain"
 	mesh_instance.mesh = surface_tool.commit()
 	mesh_instance.create_trimesh_collision()
 	mesh_instance.cast_shadow = GeometryInstance.SHADOW_CASTING_SETTING_OFF
@@ -75,9 +78,13 @@ func generate_chunk():
 func generate_water():
 	var plane_mesh = PlaneMesh.new()
 	plane_mesh.size = Vector2(chunk_size, chunk_size)
+	plane_mesh.subdivide_depth = chunk_size * water_detail
+	plane_mesh.subdivide_width = chunk_size * water_detail
 	plane_mesh.material = preload(water_material)
+	plane_mesh.material.set_shader_param("absolute_pos", Vector2(float(x), float(z)))
 	
 	var mesh_instance = MeshInstance.new()
 	mesh_instance.mesh = plane_mesh
+	mesh_instance.name = "water"
 	
 	add_child(mesh_instance)

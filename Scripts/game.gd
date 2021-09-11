@@ -110,7 +110,7 @@ func _input(event):
 		OS.window_fullscreen = !OS.window_fullscreen
 
 
-func _process(delta):
+func _process(_delta):
 	update_chunks()
 	clean_up_chunks()
 	reset_chunks()

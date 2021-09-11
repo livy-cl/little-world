@@ -1,9 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/UI/pause_menu/Play_button.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/UI/quit_to_desktop.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/UI/change_scene.gd" type="Script" id=3]
+[ext_resource path="res://material/menu/2d_shaders/extra_assets/vignette.png" type="Texture" id=4]
+[ext_resource path="res://material/menu/2d_shaders/vignette.shader" type="Shader" id=5]
+[ext_resource path="res://material/menu/game.theme" type="Theme" id=6]
+[ext_resource path="res://material/menu/2d_shaders/extra_assets/white.png" type="Texture" id=7]
 
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 5 )
+shader_param/vignette = ExtResource( 4 )
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -12,32 +19,48 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="effect" type="TextureRect" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -3.0
+margin_right = 3.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="."]
 anchor_left = 0.329102
 anchor_top = 0.121667
 anchor_right = 0.670898
 anchor_bottom = 0.878333
-color = Color( 0, 0, 0, 0.27451 )
+color = Color( 0, 0, 0, 0 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Play" type="Button" parent="ColorRect"]
+[node name="Play" type="Button" parent="background"]
 anchor_left = 0.22
 anchor_top = 0.0638767
 anchor_right = 0.78
 anchor_bottom = 0.176211
+theme = ExtResource( 6 )
 text = "Play"
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="options" type="Button" parent="ColorRect"]
+[node name="options" type="Button" parent="background"]
 anchor_left = 0.22
 anchor_top = 0.307269
 anchor_right = 0.78
 anchor_bottom = 0.419604
+theme = ExtResource( 6 )
 text = "Options"
 script = ExtResource( 3 )
 __meta__ = {
@@ -45,11 +68,12 @@ __meta__ = {
 }
 scene = "res://scenes/options.tscn"
 
-[node name="quit_to_main_menu" type="Button" parent="ColorRect"]
+[node name="quit_to_main_menu" type="Button" parent="background"]
 anchor_left = 0.22
 anchor_top = 0.593612
 anchor_right = 0.78
 anchor_bottom = 0.705947
+theme = ExtResource( 6 )
 text = "Quit to main menu"
 script = ExtResource( 3 )
 __meta__ = {
@@ -57,11 +81,12 @@ __meta__ = {
 }
 scene = "res://scenes/mainMenu.tscn"
 
-[node name="quit_to_desktop" type="Button" parent="ColorRect"]
+[node name="quit_to_desktop" type="Button" parent="background"]
 anchor_left = 0.22
 anchor_top = 0.839207
 anchor_right = 0.78
 anchor_bottom = 0.951542
+theme = ExtResource( 6 )
 text = "Quit to desktop"
 script = ExtResource( 2 )
 __meta__ = {

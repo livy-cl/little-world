@@ -70,7 +70,7 @@ func display_health():
 func init_inventory():
 	inventory.clear()
 	
-	for index in range(inventory_space):
+	for _index in range(inventory_space):
 		inventory.append(0)
 
 
@@ -149,8 +149,6 @@ func update_inventory():
 
 
 func update_hotbar():
-	var texture
-	
 	for index in range(0, 10):
 		if library[inventory[index]]["icon"] != null:
 			get_item_node(index).texture = load(library[inventory[index]]["icon"])
@@ -188,12 +186,12 @@ func _ready():
 	library = yaml.parse(_read_file("res://config/ItemLibrary.yaml"))
 	init_inventory()
 	
-	for x in range(0,10):
+	for _x in range(0,10):
 		add_id_item(1)
-	for x in range(0,20):
+	for _x in range(0,20):
 		add_id_item(2)
 
 
-func _process(delta):
+func _process(_delta):
 	display_health()
 	update_inventory()
