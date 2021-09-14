@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/PauseMenu.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://material/menu/2d_shaders/extra_assets/white.png" type="Texture" id=4]
 [ext_resource path="res://material/menu/2d_shaders/blur.shader" type="Shader" id=5]
 [ext_resource path="res://material/menu/hotbar.theme" type="Theme" id=6]
+[ext_resource path="res://material/menu/game.theme" type="Theme" id=7]
 
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.7
@@ -44,7 +45,7 @@ shape = SubResource( 2 )
 
 [node name="Camera" type="Camera" parent="Rotation_Helper"]
 transform = Transform( -1, -8.74228e-08, -4.37114e-08, 4.37114e-08, 0, -1, 8.74228e-08, -1, 0, 0, -0.000768638, -1.19021 )
-far = 8192.0
+far = 300.0
 
 [node name="hearts" type="Spatial" parent="Rotation_Helper/Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9, 6.4, -10.25 )
@@ -714,3 +715,20 @@ theme = ExtResource( 6 )
 [node name="Item" type="Sprite" parent="HUD/hotbar/toolbox9"]
 position = Vector2( 20.2341, 20.0589 )
 scale = Vector2( 0.399109, 0.399109 )
+
+[node name="information" type="Control" parent="HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fps_label" type="Label" parent="HUD/information"]
+anchor_left = 0.823242
+anchor_right = 1.0
+anchor_bottom = 0.0533333
+theme = ExtResource( 7 )
+text = "Failed reading fps"
+__meta__ = {
+"_edit_use_anchors_": true
+}

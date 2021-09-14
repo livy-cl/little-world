@@ -15,6 +15,8 @@ var library
 var selected_item = 1
 var slot_default_color = Color(0, 0, 0, 84)
 var slot_selected_color = Color(0, 0, 0, 100)
+var times := []  # Timestamps of frames rendered in the last second
+var fps := 0  # Frames per second
 
 
 func _switch_items(array, first_place, second_place):
@@ -193,5 +195,21 @@ func _ready():
 
 
 func _process(_delta):
+	# ----------------------------------
+	# show fps
+	var now := OS.get_ticks_msec() 
+	
+	# Remove frames older than 1 second in the `times` array
+	while times.size() > 0 and times[0] <= now - 1000:
+		times.pop_front()
+
+	times.append(now)
+	fps = times.size()
+
+	# Display FPS in the label
+	$information/fps_label.text = str(fps) + " FPS"
+	
+	# ----------------------------------
+	
 	display_health()
 	update_inventory()
