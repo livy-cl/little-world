@@ -108,43 +108,6 @@ func move_items(original_place, new_place):
 	_switch_items(inventory, original_place, new_place)
 
 
-func sort_inventory():
-	var temp_toolbar = inventory
-	var temp_inventory = inventory
-	var inventorys = [temp_toolbar, temp_inventory]
-	
-	# --------------------------
-	# sorting inventory
-	temp_toolbar.erase(null)
-	for index in temp_toolbar.size():
-		if temp_toolbar[index].item["sort"] == null:
-			temp_toolbar.remove[index]
-	
-	var sorted = 0
-	var previous_item
-	
-	for current_inventory in inventorys:
-		sorted = 0
-		while sorted == current_inventory.size():
-			previous_item = null
-			sorted = 0
-			
-			for index in current_inventory.size():
-				if previous_item != null:
-					if previous_item > library[current_inventory[index]]["sort"]:
-						current_inventory = _switch_items(current_inventory, index, index-1)
-					else:
-						sorted += 1
-				else:
-					sorted += 1
-				
-				previous_item = library[current_inventory[index]]["sort"]
-	
-	# --------------------------
-	# done
-	temp_toolbar.append_array(temp_inventory)
-	inventory = temp_toolbar
-
 func update_inventory():
 	update_hotbar()
 	update_main_inventory()
@@ -186,10 +149,11 @@ func _ready():
 	var yaml = preload("res://addons/godot-yaml/gdyaml.gdns").new()
 	
 	library = yaml.parse(_read_file("res://config/ItemLibrary.yaml"))
+	print(library[3])
 	init_inventory()
 	
 	for _x in range(0,10):
-		add_id_item(1)
+		add_id_item(3)
 	for _x in range(0,20):
 		add_id_item(2)
 

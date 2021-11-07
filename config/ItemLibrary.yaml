@@ -1,22 +1,20 @@
+- name: pickaxe
+  type: tools
+  icon: res://material/textures/tools/pickaxe.png
+  scene: res://scenes/items/tools/pickaxe.tscn
+
+- name: axe
+  type: tools
+  icon: res://material/textures/tools/axe.png
+  scene: res://scenes/items/tools/axe.tscn
+  
+- name: sickle
+  type: tools
+  icon: res://material/textures/tools/sickle.png
+  scene: res://scenes/items/tools/sickle.tscn
+ 
 - name: null
   type: null
   sort: null
   icon: null
-
-- name: axe
-  type: tools
-  sort: 30
-  icon: res://material/textures/tools/axe.png
-  scene: res://scenes/items/tools/axe.tscn
-
-- name: pickaxe
-  type: tools
-  sort: 20
-  icon: res://material/textures/tools/pickaxe.png
-  scene: res://scenes/items/tools/pickaxe.tscn
-  
-- name: sickle
-  type: tools
-  sort: 40
-  icon: res://material/texture/tools/sickle.png
-  scene: res://scenes/items/tools/sickle.tscn
+  scene: null
