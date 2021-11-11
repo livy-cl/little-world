@@ -15,6 +15,8 @@ var tree = preload("res://Scenes/props/Tree.scn")
 
 var rng = RandomNumberGenerator.new()
 
+var container_node
+
 var should_remove
 var noise
 var x
@@ -27,6 +29,11 @@ func _init(global_noise, global_x, global_z, global_chunk_size):
 	self.x = global_x
 	self.z = global_z
 	self.chunk_size = global_chunk_size
+	
+	
+	container_node = Node.new()
+	container_node.name = String(global_x/64) + "|" + String(global_z/64)
+	add_child(container_node)
 
 
 func _ready():
@@ -35,6 +42,7 @@ func _ready():
 	
 	generate_chunk()
 	generate_water()
+
 
 func generate_chunk():
 	var plane_mesh = PlaneMesh.new()
@@ -53,7 +61,7 @@ func generate_chunk():
 	# init multimesh for grass blades
 	var multimesh = MultiMesh.new()
 	multimesh.transform_format = MultiMesh.TRANSFORM_3D
-	multimesh.instance_count = data_tool.get_vertex_count()
+	multimesh.instance_count = data_tool.get_vertex_count()*2-1
 	multimesh.visible_instance_count = -1
 	multimesh.mesh = preload("res://Models/world/grass_blade.obj")
 	
@@ -65,7 +73,8 @@ func generate_chunk():
 		data_tool.set_vertex(index, vertex)
 		
 		# generate grass blades
-		multimesh.set_instance_transform(index, Transform(Basis(), vertex))
+		multimesh.set_instance_transform(index, Transform(Basis(Vector3(0, 1, 0), rng.randf_range(0,5)), Vector3(vertex.x+rng.randf_range(0, 1), vertex.y, vertex.z+rng.randf_range(0, 1))))
+		multimesh.set_instance_transform(index*2, Transform(Basis(Vector3(0, 1, 0), rng.randf_range(0,5)), Vector3(vertex.x+rng.randf_range(0, 1), vertex.y, vertex.z+rng.randf_range(0, 1))))
 		
 		# generate trees
 		if rand_range(0, 100) < tree_amount and vertex.y > 2:
@@ -90,11 +99,10 @@ func generate_chunk():
 	mesh_instance.create_trimesh_collision()
 	mesh_instance.cast_shadow = GeometryInstance.SHADOW_CASTING_SETTING_OFF
 	add_child(mesh_instance)
-	
+
 	# create multimesh instance for the grass blades
 	var multimesh_instance = MultiMeshInstance.new()
 	multimesh_instance.multimesh = multimesh
-	multimesh_instance.material_override = preload(grass_blade_material)
 	add_child(multimesh_instance)
 
 

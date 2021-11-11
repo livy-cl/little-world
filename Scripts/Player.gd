@@ -30,6 +30,9 @@ var camera
 var rotation_helper
 var is_sprinting = false
 
+func calculate_chunk():
+	pass
+
 func _ready():
 	camera = $Rotation_Helper/Camera
 	rotation_helper = $Rotation_Helper
@@ -146,6 +149,8 @@ func process_movement(delta):
 	vel.x = hvel.x
 	vel.z = hvel.z
 	vel = move_and_slide(vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(max_slope_angle))
+	
+	# calculate current chunk
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:

@@ -25,3 +25,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -148.312, 307.409, 113.729 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
+
+[node name="chunks" type="Node" parent="."]
